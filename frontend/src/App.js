@@ -9,6 +9,8 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { useContext, useEffect } from 'react';
 import { Store } from './store';
 import { Link } from 'react-router-dom';
+import FaveScreen from './screens/FaveScreen';
+import SigninScreen from './screens/SigninScreen';
 
 function App() {
   const { state } = useContext(Store);
@@ -27,9 +29,14 @@ function App() {
                   favourites
                   {favourites.faveItems.length > 0 && (
                     <Badge pill bg="danger">
-                      {favourites.faveItems.length}
+                      {favourites.faveItems.reduce((a, c) => a + c.quantity, 0)}
                     </Badge>
                   )}
+                </Link>
+              </Nav>
+              <Nav className="me-auto">
+                <Link to="/signin" className="nav-link">
+                  sign in
                 </Link>
               </Nav>
             </Container>
@@ -39,7 +46,9 @@ function App() {
           <Container className="mt-3">
             <Routes>
               <Route path="/product/:slug" element={<ProductScreen />} />
+              <Route path="/favourites" element={<FaveScreen />} />
               <Route path="/" element={<HomeScreen />} />
+              <Route path="/signin" element={<SigninScreen />} />
             </Routes>
           </Container>
         </main>

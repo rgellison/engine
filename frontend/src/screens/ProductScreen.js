@@ -1,13 +1,12 @@
 import axios from 'axios';
-import { useContext, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { useReducer } from 'react';
+import { useContext, useEffect, useReducer } from 'react';
+import { navigate, useNavigate, useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Rating from '../components/Rating';
 import ListGroup from 'react-bootstrap/ListGroup';
-import ListGroupItem from 'react-bootstrap/esm/ListGroupItem';
-import Button from 'react-bootstrap/esm/Button';
+import ListGroupItem from 'react-bootstrap/ListGroupItem';
+import Button from 'react-bootstrap/Button';
+import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
 import { Store } from '../store';
 
@@ -25,6 +24,7 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
+  const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
 
@@ -47,11 +47,20 @@ function ProductScreen() {
   }, [slug]);
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
-  const addToFavouritesHandler = () => {
+  const { favourites } = state;
+  const addToFavouritesHandler = async () => {
+    const existItem = favourites.faveItems.find((x) => x._id === product._id);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    // const { data } = await axios.get(`/api/products/${product._id}`);
+    // if (data.countInStock < quantity) {
+    //   window.alert('Sorry. Product is out of stock');
+    //   return;
+    // }
     ctxDispatch({
       type: 'FAVE_ADD_ITEM',
-      payload: { ...product, quantity: 1 },
+      payload: { ...product, quantity },
     });
+    navigate('/favourites');
   };
   return loading ? (
     <div>Loading...</div>

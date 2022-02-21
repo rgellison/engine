@@ -1,6 +1,7 @@
 const data = {
   products: [
     {
+      _id: '1',
       name: 'Attack 1',
       slug: 'Attack 1',
       category: 'Shirts',
@@ -13,6 +14,7 @@ const data = {
       description: 'Trojan horse attacks',
     },
     {
+      _id: '2',
       name: 'Attack 2',
       slug: 'Attack 2',
       category: 'Shirts',
@@ -25,6 +27,7 @@ const data = {
       description: 'Denial of service attack',
     },
     {
+      _id: '3',
       name: 'Attack 3',
       slug: 'Attack 3',
       category: 'Pants',
@@ -37,6 +40,7 @@ const data = {
       description: 'Hackers',
     },
     {
+      _id: '4',
       name: 'Attack 4',
       slug: 'Attack 4',
       category: 'Pants',

@@ -10,3 +10,7 @@
 6. updated URLs
 
 7. Add items to favourites
+8. Alter existing items in favourites (check backend)
+9. create favourites page
+10. create sign in screen
+11. connect to database
