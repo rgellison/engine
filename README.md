@@ -8,3 +8,5 @@
 4. Created main feature screen with temproray data
 5. Created singular product screen with tenporary data
 6. updated URLs
+
+7. Add items to favourites

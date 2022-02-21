@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useReducer } from 'react';
 import Row from 'react-bootstrap/Row';
@@ -9,6 +9,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/esm/ListGroupItem';
 import Button from 'react-bootstrap/esm/Button';
 import { Helmet } from 'react-helmet-async';
+import { Store } from '../store';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -44,6 +45,14 @@ function ProductScreen() {
     };
     fetchData();
   }, [slug]);
+
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const addToFavouritesHandler = () => {
+    ctxDispatch({
+      type: 'FAVE_ADD_ITEM',
+      payload: { ...product, quantity: 1 },
+    });
+  };
   return loading ? (
     <div>Loading...</div>
   ) : error ? (
@@ -78,7 +87,9 @@ function ProductScreen() {
             </ListGroupItem>
             <ListGroupItem>
               <div className="d-grid">
-                <Button variant="primary">Add to favourites</Button>
+                <Button onClick={addToFavouritesHandler} variant="primary">
+                  Add to favourites
+                </Button>
               </div>
             </ListGroupItem>
           </ListGroup>

@@ -2,10 +2,17 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import Navbar from 'react-bootstrap/Navbar';
+import Badge from 'react-bootstrap/Badge';
+import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
+import { useContext, useEffect } from 'react';
+import { Store } from './store';
+import { Link } from 'react-router-dom';
 
 function App() {
+  const { state } = useContext(Store);
+  const { favourites } = state;
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
@@ -15,6 +22,16 @@ function App() {
               <LinkContainer to="/">
                 <Navbar.Brand>SECURITY SUGGESTION ENGINE</Navbar.Brand>
               </LinkContainer>
+              <Nav className="me-auto">
+                <Link to="/favourites" className="nav-link">
+                  favourites
+                  {favourites.faveItems.length > 0 && (
+                    <Badge pill bg="danger">
+                      {favourites.faveItems.length}
+                    </Badge>
+                  )}
+                </Link>
+              </Nav>
             </Container>
           </Navbar>
         </header>
