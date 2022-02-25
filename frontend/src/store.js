@@ -3,6 +3,10 @@ import { createContext, useReducer } from 'react';
 export const Store = createContext();
 
 const initialState = {
+  userInfo: localStorage.getItem('userInfo')
+    ? JSON.parse(localStorage.getItem('userInfo'))
+    : null,
+
   favourites: {
     faveItems: localStorage.getItem('faveItems')
       ? JSON.parse(localStorage.getItem('faveItems'))
@@ -31,6 +35,13 @@ function reducer(state, action) {
       localStorage.setItem('faveItems', JSON.stringify(faveItems));
       return { ...state, favourites: { ...state.favourites, faveItems } };
     }
+    case 'USER_SIGNIN':
+      return { ...state, userInfo: action.payload };
+    case 'USER_SIGNOUT':
+      return {
+        ...state,
+        userInfo: null,
+      };
     default:
       return state;
   }
