@@ -14,6 +14,7 @@ import { Store } from './store';
 import { Link } from 'react-router-dom';
 import FaveScreen from './screens/FaveScreen';
 import SigninScreen from './screens/SigninScreen';
+import SignupScreen from './screens/SignupScreen';
 
 function App() {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -73,6 +74,7 @@ function App() {
               <Route path="/favourites" element={<FaveScreen />} />
               <Route path="/" element={<HomeScreen />} />
               <Route path="/signin" element={<SigninScreen />} />
+              <Route path="/signup" element={<SignupScreen />} />
             </Routes>
           </Container>
         </main>
