@@ -14,3 +14,6 @@
 9. create favourites page
 10. create sign in screen
 11. connect to database
+
+12. add product data
+    13
