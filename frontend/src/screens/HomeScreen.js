@@ -45,9 +45,9 @@ function HomeScreen() {
   return (
     <div>
       <Helmet>
-        <title>secuirty suggestion engine</title>
+        <title>security suggestion engine</title>
       </Helmet>
-      <h1>Featured Products</h1>
+      <h1>Featured Attacks</h1>
       <div className="products">
         {loading ? (
           <div>Loading...</div>

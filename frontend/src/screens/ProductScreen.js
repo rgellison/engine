@@ -69,14 +69,14 @@ function ProductScreen() {
   ) : (
     <div>
       <Row>
-        <Col md={6}>
+        <Col md={4}>
           <img
             className="img-large"
             src={product.image}
             alt={product.name}
           ></img>
         </Col>
-        <Col md={3}>
+        <Col md={4}>
           <ListGroup variant="flush">
             <ListGroup.Item>
               <Helmet>
@@ -85,13 +85,10 @@ function ProductScreen() {
               <h1>{product.name}</h1>
             </ListGroup.Item>
             <ListGroup.Item>
-              <Rating>
-                rating={product.rating}
-                numReviews={product.numReviews}
-              </Rating>
+              <Rating rating={product.rating} numReviews={product.numReviews} />
             </ListGroup.Item>
             <ListGroupItem>
-              Description:
+              <b> Definition:</b>
               <p>{product.description}</p>
             </ListGroupItem>
             <ListGroupItem>
@@ -103,7 +100,40 @@ function ProductScreen() {
             </ListGroupItem>
           </ListGroup>
         </Col>
-        <Col md={3}></Col>
+        <Col md={4}>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <Helmet>
+                <title>{product.CVEname}</title>
+              </Helmet>
+              <h1>CVE LIST</h1>
+            </ListGroup.Item>
+            <ListGroupItem>
+              <b>Description:</b>
+              <p>{product.CVEdescription}</p>
+            </ListGroupItem>
+            <ListGroupItem>
+              <b> Status:</b>
+              <p>{product.CVEstatus}</p>
+            </ListGroupItem>
+            <ListGroupItem>
+              <b> References:</b>
+              <p>{product.CVEreferences}</p>
+            </ListGroupItem>
+            <ListGroupItem>
+              <b> Phase:</b>
+              <p>{product.CVEphase}</p>
+            </ListGroupItem>
+            <ListGroupItem>
+              <b> Votes:</b>
+              <p>{product.CVEvotes}</p>
+            </ListGroupItem>
+            <ListGroupItem>
+              <b> Comments:</b>
+              <p>{product.CVEcomments}</p>
+            </ListGroupItem>
+          </ListGroup>
+        </Col>
       </Row>
     </div>
   );

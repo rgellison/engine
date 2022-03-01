@@ -1,6 +1,17 @@
 import bcrypt from 'bcryptjs';
 
 const data = {
+  CVE: [
+    {
+      Name: 'Test',
+      Status: 'Test',
+      Description: 'Test',
+      References: 'Test',
+      Phase: 'Test',
+      Votes: 'Test',
+      Comments: 'Test',
+    },
+  ],
   users: [
     {
       name: 'Becca',
@@ -22,7 +33,6 @@ const data = {
       slug: 'Attack 1',
       category: 'Cyber',
       image: '/images/p1.jpg', // 679px × 829px
-      countInStock: 10,
       rating: 4.5,
       numReviews: 10,
       description: 'Trojan horse attacks',
@@ -33,7 +43,6 @@ const data = {
       slug: 'Attack 2',
       category: 'Cyber',
       image: '/images/p2.jpg',
-      countInStock: 20,
       rating: 4.0,
       numReviews: 10,
       description: 'Denial of service attack',
@@ -44,7 +53,6 @@ const data = {
       slug: 'Attack 3',
       category: 'Cyber',
       image: '/images/p3.jpg',
-      countInStock: 15,
       rating: 4.5,
       numReviews: 14,
       description: 'Hackers',
@@ -55,7 +63,6 @@ const data = {
       slug: 'Attack 4',
       category: 'Cyber',
       image: '/images/p4.jpg',
-      countInStock: 5,
       rating: 4.5,
       numReviews: 10,
       description: 'Virus',

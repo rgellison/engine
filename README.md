@@ -19,3 +19,6 @@
 13. add user data
 14. create sign in screen
 15. create sign up screen
+16. create user profile
+17. create search
+18. add CVE info
