@@ -12,16 +12,25 @@ body {
 main {
   flex: 1;
 }
+.btn-primary,
+.btn-outline-primary {
+  background-color: #34ada3;
+  color: #ffff;
+  border-width: 0px;
+}
 .products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.rating span {
+  color: #ffc000;
+}
+
 .product {
   border: 1px #404040 solid;
   margin: 1rem;
-  flex: 1 0 21%;
-  margin: 5px;
 }
 .product img {
   width: 100%;
@@ -38,4 +47,32 @@ main {
 }
 .small-container {
   max-width: 600px;
+}
+/* sidebar */
+.navbar-brand {
+  font-weight: bold;
+}
+.side-navbar {
+  width: 240px;
+  height: 100%;
+  position: absolute;
+  left: -300px;
+  background-color: #100901;
+  transition: 0.5s;
+}
+
+.site-container {
+  transition: 0.4s;
+}
+.active-cont {
+  margin-left: 240px;
+}
+.active-nav {
+  left: 0;
+}
+.text-bold {
+  font-weight: bold;
+}
+.pillDes {
+  padding: 5px;
 }
