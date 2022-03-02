@@ -75,7 +75,7 @@ function App() {
                 <SearchBox />
                 <Nav className="me-auto">
                   <Link to="/favourites" className="nav-link">
-                    YOUR FAVOURITES
+                    FAVOURITES
                     {favourites.faveItems.length > 0 && (
                       <Badge pillDes pill bg="info">
                         {favourites.faveItems.reduce(
@@ -178,7 +178,7 @@ function App() {
             </Routes>
           </Container>
         </main>
-        <footer>
+        <footer className="footer">
           <div className="text-center">All rights reserved</div>
         </footer>
       </div>

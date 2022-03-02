@@ -107,6 +107,14 @@ function ProductScreen() {
                 <title>{product.CVEname}</title>
               </Helmet>
               <h1>CVE LIST</h1>
+              <b>
+                <i className="subtitle">
+                  The Common Vulnerabilities and Exposures is a list of publicly
+                  disclosed cybersecurity vulnerabilities that is free to
+                  search, use, and incorporate into products and services, per
+                  the terms of use...
+                </i>
+              </b>
             </ListGroup.Item>
             <ListGroupItem>
               <b>Description:</b>

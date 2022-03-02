@@ -44,6 +44,7 @@ main {
 }
 .img-thumbnail {
   height: 80px;
+  border-color: #ffff;
 }
 .small-container {
   max-width: 600px;
@@ -75,4 +76,15 @@ main {
 }
 .pillDes {
   padding: 5px;
+}
+.footer {
+  background-color: #100901;
+  color: #404040;
+}
+.noBorder {
+  border-color: #ffff;
+}
+.subtitle {
+  color: #34ada3;
+  font-size: medium;
 }

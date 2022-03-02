@@ -39,7 +39,7 @@ export default function FaveScreen() {
       </Helmet>
       <h1>Your Favourites</h1>
       <Row>
-        <Col md={8}>
+        <Col md={12}>
           {faveItems.length === 0 ? (
             <MessageBox>
               Favourites is empty. <Link to="/">Go Browse</Link>
@@ -57,8 +57,8 @@ export default function FaveScreen() {
                       ></img>{' '}
                       <Link to={`/product/${item.slug}`}>{item.name}</Link>
                     </Col>
-                    <Col md={3}>{item.description}</Col>
-                    <Col md={2}>
+                    <Col md={4}>{item.description}</Col>
+                    <Col md={4}>
                       <Button
                         onClick={() => removeItemHandler(item)}
                         variant="light"
