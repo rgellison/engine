@@ -1,5 +1,4 @@
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import Rating from '../components/Rating';
 import axios from 'axios';
@@ -34,10 +33,9 @@ function Product(props) {
         <img src={product.image} className="card-img-top" alt={product.name} />
       </Link>
       <Card.Body>
-        <Link to={`/product/${product.slug}`}>
-          <Card.Title>{product.name}</Card.Title>
-        </Link>
+        <Card.Title>{product.name}</Card.Title>
         <Rating rating={product.rating} numReviews={product.numReviews} />
+        <br></br>
         <Card.Text>{product.description}</Card.Text>
       </Card.Body>
     </Card>

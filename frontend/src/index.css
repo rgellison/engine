@@ -106,6 +106,8 @@ main {
 .h5 {
   text-align: center;
   font-weight: bold;
+  color: #000;
+  text-decoration: none;
 }
 .intro {
   color: rgb(60, 61, 60);
@@ -157,4 +159,75 @@ main {
   float: right;
   margin-right: 5%;
   margin-left: 65%;
+}
+.button2 {
+  width: 100%;
+  background-color: #34ada3;
+  border: none;
+  color: #ececeb;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+.category {
+  background-color: #ffffff;
+  padding: 5%;
+  border-radius: 10px;
+  margin: 15px;
+  margin-right: 50px;
+  margin-left: 1px;
+  width: 250px;
+  border: 3px solid rgb(221, 220, 220);
+  text-decoration: none;
+}
+.asset {
+  list-style: none;
+  padding: 3%;
+  margin: 20px;
+  margin-left: -15px;
+  background-color: #c1cdce;
+  border: none;
+  color: #ececeb;
+  font-size: 12px;
+  width: 30%;
+  height: 50px;
+  white-space: normal;
+  text-align: center;
+}
+.noUnderline {
+  text-decoration: none;
+}
+.c1 {
+  background-color: #34ada3;
+}
+
+.containC {
+  height: 570px;
+  overflow: scroll;
+  white-space: normal;
+}
+/* hide scrollbar but allow scrolling */
+.containC {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  overflow-y: scroll;
+}
+
+.containC::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, and Opera */
 }

@@ -140,32 +140,36 @@ export default function SearchScreen() {
         <title>Search Products</title>
       </Helmet>
       <Row>
-        <Col md={3}>
-          <h3>Categories</h3>
-          <div>
-            <ul>
-              <li>
-                <Link
-                  className={'all' === category ? 'text-bold' : ''}
-                  to={getFilterUrl({ category: 'all' })}
-                >
-                  Any
-                </Link>
-              </li>
-              {categories.map((c) => (
-                <li key={c}>
+        <Col md={3} className="containC">
+          <b>Personalise your page below:</b>
+
+          <div className="category">
+            <h5>Categories</h5>
+            <div>
+              <ul>
+                <li>
                   <Link
-                    className={c === category ? 'text-bold' : ''}
-                    to={getFilterUrl({ category: c })}
+                    className={'all' === category ? 'text-bold' : ''}
+                    to={getFilterUrl({ category: 'all' })}
                   >
-                    {c}
+                    Any
                   </Link>
                 </li>
-              ))}
-            </ul>
+                {categories.map((c) => (
+                  <li key={c}>
+                    <Link
+                      className={c === category ? 'text-bold' : ''}
+                      to={getFilterUrl({ category: c })}
+                    >
+                      {c}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <div>
-            <h3>Ratings</h3>
+          <div className="category">
+            <h5>Ratings</h5>
             <ul>
               {ratings.map((r) => (
                 <li key={r.name}>
@@ -187,20 +191,13 @@ export default function SearchScreen() {
               </li>
             </ul>
           </div>
-          <div>
-            <h3>Based on your likes...</h3>
+          <div className="category">
+            <h5>Based on your likes...</h5>
             <ul>
               <li>
                 {faveItems.map((item) => (
                   <Row className="align-items-center">
-                    <Col md={4}>
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="img-fluid rounded img-thumbnail"
-                      ></img>{' '}
-                    </Col>
-                    <Col md={4}>
+                    <Col md={8}>
                       <Link to={`/product/${item.slug}`}>{item.name}</Link>
                     </Col>
                   </Row>

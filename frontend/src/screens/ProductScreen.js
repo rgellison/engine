@@ -38,6 +38,15 @@ const reducer = (state, action) => {
 
 function ProductScreen() {
   let reviewsRef = useRef();
+  const [hover, setHover] = useState();
+
+  const handleMouseIn = () => {
+    setHover(true);
+  };
+
+  const handleMouseOut = () => {
+    setHover(false);
+  };
 
   const [rating, setRating] = useState(0);
   const [comment, setComment] = useState('');
@@ -119,6 +128,7 @@ function ProductScreen() {
   ) : (
     <div>
       <div className="welcome"></div>
+
       <Row className="back">
         <Col md={6}>
           <ListGroup variant="flush" className="contain">
@@ -158,14 +168,21 @@ function ProductScreen() {
               <Helmet>
                 <title>{product.CVEname}</title>
               </Helmet>
+
               <h1 className="welcome">CVE LIST</h1>
               <b>
-                <i className="subtitle">
-                  The Common Vulnerabilities and Exposures is a list of publicly
-                  disclosed cybersecurity vulnerabilities that is free to
-                  search, use, and incorporate into products and services, per
-                  the terms of use...
-                </i>
+                <div>
+                  <button
+                    className="button2"
+                    onMouseOver={handleMouseIn}
+                    onMouseOut={handleMouseOut}
+                  >
+                    {hover
+                      ? 'The Common Vulnerabilities and Exposures is a list of publicly disclosed cybersecurity vulnerabilities that is free to search, use, and incorporate into products and services, per the terms of use...'
+                      : 'what is CVE?'}
+                  </button>
+                </div>
+                <i className="subtitle"></i>
               </b>
             </ListGroup.Item>
             <ListGroupItem>
