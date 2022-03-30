@@ -17,7 +17,6 @@ productRouter.get(
     const pageSize = query.pageSize || PAGE_SIZE;
     const page = query.page || 1;
     const category = query.category || '';
-    const description = query.description || '';
     const rating = query.rating || '';
     const order = query.order || '';
     const searchQuery = query.query || '';
@@ -40,23 +39,13 @@ productRouter.get(
             },
           }
         : {};
-    const descriptionFilter =
-      description && description !== 'all'
-        ? {
-            // 1-50
-            description: {
-              $gte: Number(description.split('-')[0]),
-              $lte: Number(description.split('-')[1]),
-            },
-          }
-        : {};
     const sortOrder =
       order === 'featured'
         ? { featured: -1 }
         : order === 'lowest'
-        ? { description: 1 }
+        ? { rating: 1 }
         : order === 'highest'
-        ? { description: -1 }
+        ? { rating: -1 }
         : order === 'toprated'
         ? { rating: -1 }
         : order === 'newest'
@@ -66,7 +55,6 @@ productRouter.get(
     const products = await Product.find({
       ...queryFilter,
       ...categoryFilter,
-      ...descriptionFilter,
       ...ratingFilter,
     })
       .sort(sortOrder)
@@ -76,7 +64,6 @@ productRouter.get(
     const countProducts = await Product.countDocuments({
       ...queryFilter,
       ...categoryFilter,
-      ...descriptionFilter,
       ...ratingFilter,
     });
     res.send({

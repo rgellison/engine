@@ -11,6 +11,8 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Button from 'react-bootstrap/Button';
 import Product from '../components/Product';
+import { useContext } from 'react';
+import { Store } from '../store';
 import LinkContainer from 'react-router-bootstrap/LinkContainer';
 
 const reducer = (state, action) => {
@@ -33,21 +35,6 @@ const reducer = (state, action) => {
       return state;
   }
 };
-
-// const descriptions = [
-//   {
-//     name: '',
-//     value: '1-50',
-//   },
-//   {
-//     name: '$51 to $200',
-//     value: '51-200',
-//   },
-//   {
-//     name: '$201 to $1000',
-//     value: '201-1000',
-//   },
-// ];
 
 export const ratings = [
   {
@@ -73,6 +60,24 @@ export const ratings = [
 
 export default function SearchScreen() {
   const navigate = useNavigate();
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const {
+    favourites: { faveItems },
+  } = state;
+  const updateFavouritesHandler = async (item, quantity) => {
+    const { data } = await axios.get(`/api/products/${item._id}`);
+    if (data.countInStock < quantity) {
+      window.alert('Sorry. Product is out of stock');
+      return;
+    }
+    ctxDispatch({
+      type: 'FAVE_ADD_ITEM',
+      payload: { ...item, quantity },
+    });
+  };
+  const removeItemHandler = (item) => {
+    ctxDispatch({ type: 'FAVE_REMOVE_ITEM', payload: item });
+  };
   const { search } = useLocation();
   const sp = new URLSearchParams(search); // /search?category=Shirts
   const category = sp.get('category') || 'all';
@@ -134,7 +139,7 @@ export default function SearchScreen() {
       </Helmet>
       <Row>
         <Col md={3}>
-          <h3>Department</h3>
+          <h3>Categories</h3>
           <div>
             <ul>
               <li>
@@ -157,31 +162,8 @@ export default function SearchScreen() {
               ))}
             </ul>
           </div>
-          {/* <div> */}
-          {/* <h3>Description</h3>
-            <ul>
-              <li>
-                <Link
-                  className={'all' === description ? 'text-bold' : ''}
-                  to={getFilterUrl({ description: 'all' })}
-                >
-                  Any
-                </Link>
-              </li>
-              {descriptions.map((d) => (
-                <li key={d}>
-                  <Link
-                    to={getFilterUrl({ description: d })}
-                    className={d === description ? 'text-bold' : ''}
-                  >
-                    {d.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div> */}
           <div>
-            <h3>Avg. Customer Review</h3>
+            <h3>Ratings</h3>
             <ul>
               {ratings.map((r) => (
                 <li key={r.name}>
@@ -203,7 +185,30 @@ export default function SearchScreen() {
               </li>
             </ul>
           </div>
+          <div>
+            <h3>Based on your likes...</h3>
+
+            <ul>
+              <li>
+                {faveItems.map((item) => (
+                  <Row className="align-items-center">
+                    <Col md={4}>
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="img-fluid rounded img-thumbnail"
+                      ></img>{' '}
+                    </Col>
+                    <Col md={4}>
+                      <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                    </Col>
+                  </Row>
+                ))}
+              </li>
+            </ul>
+          </div>
         </Col>
+
         <Col md={9}>
           {loading ? (
             <LoadingBox></LoadingBox>
@@ -232,17 +237,21 @@ export default function SearchScreen() {
                   </div>
                 </Col>
                 <Col className="text-end">
-                  Sort by{' '}
+                  Search for recommendations{' '}
                   <select
                     value={order}
                     onChange={(e) => {
                       navigate(getFilterUrl({ order: e.target.value }));
                     }}
                   >
-                    <option value="newest">Newest Solutions</option>
+                    <option value="newest">
+                      Recommendation: Most recent / newly published
+                    </option>
                     {/* <option value="lowest">description: Low to High</option>
                     <option value="highest">description: High to Low</option> */}
-                    <option value="toprated">Avg. Customer Reviews</option>
+                    <option value="toprated">
+                      Recommendation: Based off highest popularity
+                    </option>
                   </select>
                 </Col>
               </Row>

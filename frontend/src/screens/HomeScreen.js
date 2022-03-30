@@ -47,7 +47,8 @@ function HomeScreen() {
       <Helmet>
         <title>security suggestion engine</title>
       </Helmet>
-      <h1>Featured Attacks</h1>
+      <h2 className="welcome">Welcome</h2>
+      <h3 className="intro">Select a featured attack</h3>
       <div className="products">
         {loading ? (
           <div>Loading...</div>
