@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import Badge from 'react-bootstrap/Badge';
 import { toast } from 'react-toastify';
 // import { getError } from '../utils';
 import { Helmet } from 'react-helmet-async';
@@ -11,6 +12,9 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Button from 'react-bootstrap/Button';
 import Product from '../components/Product';
+import { useContext } from 'react';
+import { Store } from '../store';
+import ListGroup from 'react-bootstrap/ListGroup';
 import LinkContainer from 'react-router-bootstrap/LinkContainer';
 
 const reducer = (state, action) => {
@@ -33,7 +37,6 @@ const reducer = (state, action) => {
       return state;
   }
 };
-
 
 export const ratings = [
   {
@@ -59,6 +62,10 @@ export const ratings = [
 
 export default function SearchScreen() {
   const navigate = useNavigate();
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const {
+    favourites: { faveItems },
+  } = state;
   const { search } = useLocation();
   const sp = new URLSearchParams(search); // /search?category=Shirts
   const category = sp.get('category') || 'all';
@@ -143,29 +150,6 @@ export default function SearchScreen() {
               ))}
             </ul>
           </div>
-          {/* <div> */}
-          {/* <h3>Description</h3>
-            <ul>
-              <li>
-                <Link
-                  className={'all' === description ? 'text-bold' : ''}
-                  to={getFilterUrl({ description: 'all' })}
-                >
-                  Any
-                </Link>
-              </li>
-              {descriptions.map((d) => (
-                <li key={d}>
-                  <Link
-                    to={getFilterUrl({ description: d })}
-                    className={d === description ? 'text-bold' : ''}
-                  >
-                    {d.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div> */}
           <div>
             <h3>Ratings</h3>
             <ul>
@@ -189,7 +173,29 @@ export default function SearchScreen() {
               </li>
             </ul>
           </div>
+          <div>
+            <h3>Based on your likes...</h3>
+            <ul>
+              <li>
+                {faveItems.map((item) => (
+                  <Row className="align-items-center">
+                    <Col md={4}>
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        className="img-fluid rounded img-thumbnail"
+                      ></img>{' '}
+                    </Col>
+                    <Col md={4}>
+                      <Link to={`/product/${item.slug}`}>{item.name}</Link>
+                    </Col>
+                  </Row>
+                ))}
+              </li>
+            </ul>
+          </div>
         </Col>
+
         <Col md={9}>
           {loading ? (
             <LoadingBox></LoadingBox>
@@ -218,17 +224,21 @@ export default function SearchScreen() {
                   </div>
                 </Col>
                 <Col className="text-end">
-                  Sort by{' '}
+                  Search for recommendations{' '}
                   <select
                     value={order}
                     onChange={(e) => {
                       navigate(getFilterUrl({ order: e.target.value }));
                     }}
                   >
-                    <option value="newest">Newest Solutions</option>
+                    <option value="newest">
+                      Recommendation: Most recent / newly published
+                    </option>
                     {/* <option value="lowest">description: Low to High</option>
                     <option value="highest">description: High to Low</option> */}
-                    <option value="toprated">Recommendations</option>
+                    <option value="toprated">
+                      Recommendation: Based off highest popularity
+                    </option>
                   </select>
                 </Col>
               </Row>

@@ -22,6 +22,11 @@ productRouter.get(
     const order = query.order || '';
     const searchQuery = query.query || '';
 
+    const { state, dispatch: ctxDispatch } = useContext(Store);
+    const {
+      favourites: { faveItems },
+    } = state;
+
     const queryFilter =
       searchQuery && searchQuery !== 'all'
         ? {
@@ -53,8 +58,8 @@ productRouter.get(
     const sortOrder =
       order === 'featured'
         ? { featured: -1 }
-        : order === 'lowest'
-        ? { description: 1 }
+        : order === 'faveItems'
+        ? { faveItems: 1 }
         : order === 'highest'
         ? { description: -1 }
         : order === 'toprated'
