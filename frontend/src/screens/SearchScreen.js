@@ -1,6 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import Badge from 'react-bootstrap/Badge';
 import { toast } from 'react-toastify';
 // import { getError } from '../utils';
 import { Helmet } from 'react-helmet-async';
@@ -13,6 +14,10 @@ import Button from 'react-bootstrap/Button';
 import Product from '../components/Product';
 import { useContext } from 'react';
 import { Store } from '../store';
+<<<<<<< HEAD
+=======
+import ListGroup from 'react-bootstrap/ListGroup';
+>>>>>>> c5f9eb21d5672b98a602910d3a24c89443c497e0
 import LinkContainer from 'react-router-bootstrap/LinkContainer';
 
 const reducer = (state, action) => {
@@ -64,6 +69,7 @@ export default function SearchScreen() {
   const {
     favourites: { faveItems },
   } = state;
+<<<<<<< HEAD
   const updateFavouritesHandler = async (item, quantity) => {
     const { data } = await axios.get(`/api/products/${item._id}`);
     if (data.countInStock < quantity) {
@@ -78,6 +84,8 @@ export default function SearchScreen() {
   const removeItemHandler = (item) => {
     ctxDispatch({ type: 'FAVE_REMOVE_ITEM', payload: item });
   };
+=======
+>>>>>>> c5f9eb21d5672b98a602910d3a24c89443c497e0
   const { search } = useLocation();
   const sp = new URLSearchParams(search); // /search?category=Shirts
   const category = sp.get('category') || 'all';
@@ -187,7 +195,10 @@ export default function SearchScreen() {
           </div>
           <div>
             <h3>Based on your likes...</h3>
+<<<<<<< HEAD
 
+=======
+>>>>>>> c5f9eb21d5672b98a602910d3a24c89443c497e0
             <ul>
               <li>
                 {faveItems.map((item) => (

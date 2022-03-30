@@ -195,16 +195,22 @@ function ProductScreen() {
           </ListGroup>
         </Col>
       </Row>
+<<<<<<< HEAD
 
       <div className="my-3 ">
         <h2 className="welcome" ref={reviewsRef}>
           Reviews
         </h2>
+=======
+      <div className="my-3">
+        <h2 ref={reviewsRef}>Reviews</h2>
+>>>>>>> c5f9eb21d5672b98a602910d3a24c89443c497e0
         <div className="mb-3">
           {product.reviews.length === 0 && (
             <MessageBox>There is no review</MessageBox>
           )}
         </div>
+<<<<<<< HEAD
         <Row>
           <Col>
             {' '}
@@ -271,6 +277,67 @@ function ProductScreen() {
             </div>
           </Col>
         </Row>
+=======
+        <ListGroup>
+          {product.reviews.map((review) => (
+            <ListGroup.Item key={review._id}>
+              <strong>{review.name}</strong>
+              <Rating rating={review.rating} caption=" "></Rating>
+              <p>{review.createdAt.substring(0, 10)}</p>
+              <p>{review.comment}</p>
+            </ListGroup.Item>
+          ))}
+        </ListGroup>
+        <div className="my-3">
+          {userInfo ? (
+            <form onSubmit={submitHandler}>
+              <h2>Write a customer review</h2>
+              <Form.Group className="mb-3" controlId="rating">
+                <Form.Label>Rating</Form.Label>
+                <Form.Select
+                  aria-label="Rating"
+                  value={rating}
+                  onChange={(e) => setRating(e.target.value)}
+                >
+                  <option value="">Select...</option>
+                  <option value="1">1- Poor</option>
+                  <option value="2">2- Fair</option>
+                  <option value="3">3- Good</option>
+                  <option value="4">4- Very good</option>
+                  <option value="5">5- Excelent</option>
+                </Form.Select>
+              </Form.Group>
+              <FloatingLabel
+                controlId="floatingTextarea"
+                label="Comments"
+                className="mb-3"
+              >
+                <Form.Control
+                  as="textarea"
+                  placeholder="Leave a comment here"
+                  value={comment}
+                  onChange={(e) => setComment(e.target.value)}
+                />
+              </FloatingLabel>
+
+              <div className="mb-3">
+                <Button disabled={loadingCreateReview} type="submit">
+                  Submit
+                </Button>
+                {loadingCreateReview && <LoadingBox></LoadingBox>}
+              </div>
+            </form>
+          ) : (
+            <MessageBox>
+              Please{' '}
+              <Link to={`/signin?redirect=/product/${product.slug}`}>
+                Sign In
+              </Link>{' '}
+              to write a review
+            </MessageBox>
+          )}
+        </div>
+>>>>>>> c5f9eb21d5672b98a602910d3a24c89443c497e0
       </div>
     </div>
   );

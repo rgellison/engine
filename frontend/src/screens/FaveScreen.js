@@ -37,7 +37,7 @@ export default function FaveScreen() {
       <Helmet>
         <title>Favourites</title>
       </Helmet>
-      <h1>Your Favourites</h1>
+      <h1>Manage Your Favourites</h1>
       <Row>
         <Col md={12}>
           {faveItems.length === 0 ? (
