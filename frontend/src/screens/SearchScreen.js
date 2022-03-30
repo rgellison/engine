@@ -34,20 +34,6 @@ const reducer = (state, action) => {
   }
 };
 
-// const descriptions = [
-//   {
-//     name: '',
-//     value: '1-50',
-//   },
-//   {
-//     name: '$51 to $200',
-//     value: '51-200',
-//   },
-//   {
-//     name: '$201 to $1000',
-//     value: '201-1000',
-//   },
-// ];
 
 export const ratings = [
   {
@@ -134,7 +120,7 @@ export default function SearchScreen() {
       </Helmet>
       <Row>
         <Col md={3}>
-          <h3>Department</h3>
+          <h3>Categories</h3>
           <div>
             <ul>
               <li>
@@ -181,7 +167,7 @@ export default function SearchScreen() {
             </ul>
           </div> */}
           <div>
-            <h3>Avg. Customer Review</h3>
+            <h3>Ratings</h3>
             <ul>
               {ratings.map((r) => (
                 <li key={r.name}>
@@ -242,7 +228,7 @@ export default function SearchScreen() {
                     <option value="newest">Newest Solutions</option>
                     {/* <option value="lowest">description: Low to High</option>
                     <option value="highest">description: High to Low</option> */}
-                    <option value="toprated">Avg. Customer Reviews</option>
+                    <option value="toprated">Recommendations</option>
                   </select>
                 </Col>
               </Row>
