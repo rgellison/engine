@@ -22,3 +22,8 @@
 16. create user profile
 17. create search
 18. add CVE info
+
+19. create admin functionality
+20. management and sorts
+21. create recommendation based on popularity and user likes
+22. updated css
