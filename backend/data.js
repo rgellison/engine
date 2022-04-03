@@ -1,17 +1,6 @@
 import bcrypt from 'bcryptjs';
 
 const data = {
-  CVE: [
-    {
-      Name: 'Test',
-      Status: 'Test',
-      Description: 'Test',
-      References: 'Test',
-      Phase: 'Test',
-      Votes: 'Test',
-      Comments: 'Test',
-    },
-  ],
   users: [
     {
       name: 'Becca',
@@ -47,7 +36,7 @@ const data = {
   products: [
     {
       // _id: '1',
-      name: 'Attack 1',
+      name: 'hello',
       slug: 'Attack 1',
       category: 'Cyber',
       image: '/images/p1.jpg', // 679px × 829px

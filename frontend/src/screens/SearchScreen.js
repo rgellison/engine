@@ -141,8 +141,7 @@ export default function SearchScreen() {
       </Helmet>
       <Row>
         <Col md={3} className="containC">
-          <b>Personalise your page below:</b>
-
+          {/* <b>Personalise your page below:</b> */}
           <div className="category">
             <h5>Categories</h5>
             <div>
@@ -167,43 +166,41 @@ export default function SearchScreen() {
                 ))}
               </ul>
             </div>
-          </div>
-          <div className="category">
-            <h5>Ratings</h5>
-            <ul>
-              {ratings.map((r) => (
-                <li key={r.name}>
-                  <Link
-                    to={getFilterUrl({ rating: r.rating })}
-                    className={`${r.rating}` === `${rating}` ? 'text-bold' : ''}
-                  >
-                    <Rating caption={' & up'} rating={r.rating}></Rating>
-                  </Link>
-                </li>
-              ))}
-              <li>
-                <Link
-                  to={getFilterUrl({ rating: 'all' })}
-                  className={rating === 'all' ? 'text-bold' : ''}
-                >
-                  <Rating caption={' & up'} rating={0}></Rating>
-                </Link>
-              </li>
-            </ul>
-          </div>
+          </div>{' '}
           <div className="category">
             <h5>Based on your likes...</h5>
             <ul>
               <li>
                 {faveItems.map((item) => (
                   <Row className="align-items-center">
-                    <Col md={8}>
-                      <Link to={`/product/${item.slug}`}>{item.name}</Link>
-                    </Col>
+                    <Link to={`/product/${item.slug}`}>{item.name}</Link>
                   </Row>
                 ))}
               </li>
             </ul>
+          </div>
+          <div className="category">
+            <h5>Ratings</h5>
+            <div>
+              {ratings.map((r) => (
+                <div className="rate" key={r.name}>
+                  <Link
+                    to={getFilterUrl({ rating: r.rating })}
+                    className={`${r.rating}` === `${rating}` ? 'text-bold' : ''}
+                  >
+                    <Rating caption={' stars'} rating={r.rating}></Rating>
+                  </Link>
+                </div>
+              ))}
+              <div className="rate">
+                <Link
+                  to={getFilterUrl({ rating: 'all' })}
+                  className={rating === 'all' ? 'text-bold' : ''}
+                >
+                  <Rating caption={' stars'} rating={0}></Rating>
+                </Link>
+              </div>
+            </div>
           </div>
         </Col>
 

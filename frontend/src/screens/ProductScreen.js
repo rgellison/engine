@@ -127,90 +127,115 @@ function ProductScreen() {
     <div>{error}</div>
   ) : (
     <div>
+      {/* <div id="hover-content">Scroll to view more!</div> */}
       <div className="welcome"></div>
-
-      <Row className="back">
-        <Col md={6}>
-          <ListGroup variant="flush" className="contain">
-            <ListGroup.Item>
-              <Helmet>
-                <title>{product.name}</title>
-              </Helmet>
-              <img
-                className="img-1"
-                src={product.image}
-                alt={product.name}
-              ></img>
-              <h1 className="welcome">{product.name}</h1>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <Rating rating={product.rating} numReviews={product.numReviews} />
-              <div className="d-grid">
-                <Button
-                  onClick={addToFavouritesHandler}
-                  variant="primary"
-                  className="button1"
-                >
-                  Add to favourites
-                </Button>
-              </div>
-            </ListGroup.Item>
-            <ListGroupItem>
-              <b> Definition:</b>
-              <p>{product.description}</p>
-            </ListGroupItem>
-          </ListGroup>
-        </Col>
-
-        <Col md={6}>
-          <ListGroup variant="flush" className="contain">
-            <ListGroup.Item>
-              <Helmet>
-                <title>{product.CVEname}</title>
-              </Helmet>
-
-              <h1 className="welcome">CVE LIST</h1>
-              <b>
-                <div>
-                  <button
-                    className="button2"
-                    onMouseOver={handleMouseIn}
-                    onMouseOut={handleMouseOut}
+      <div className="parent">
+        <Row className="back">
+          <Col md={6}>
+            <ListGroup variant="flush" className="contain">
+              <ListGroup.Item>
+                <Helmet>
+                  <title>{product.name}</title>
+                </Helmet>
+                <img
+                  className="img-1"
+                  src={product.image}
+                  alt={product.name}
+                ></img>
+                <h1 className="welcome">{product.name}</h1>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <Rating
+                  rating={product.rating}
+                  numReviews={product.numReviews}
+                />
+                <div className="d-grid">
+                  <Button
+                    onClick={addToFavouritesHandler}
+                    variant="primary"
+                    className="button1"
                   >
-                    {hover
-                      ? 'The Common Vulnerabilities and Exposures is a list of publicly disclosed cybersecurity vulnerabilities that is free to search, use, and incorporate into products and services, per the terms of use...'
-                      : 'what is CVE?'}
-                  </button>
+                    Add to favourites
+                  </Button>
                 </div>
-                <i className="subtitle"></i>
-              </b>
-            </ListGroup.Item>
-            <ListGroupItem>
-              <b>Description:</b>
-              <p>{product.CVEdescription}</p>
-            </ListGroupItem>
-            <ListGroupItem>
-              <b> Status:</b>
-              <p>{product.CVEstatus}</p>
-            </ListGroupItem>
-            <ListGroupItem>
-              <b> References:</b>
-              <p>{product.CVEreferences}</p>
-            </ListGroupItem>
-            <ListGroupItem>
-              <b> Phase:</b>
-              <p>{product.CVEphase}</p>
-            </ListGroupItem>
-            <ListGroupItem>
-              <b> Votes:</b>
-              <p>{product.CVEvotes}</p>
-            </ListGroupItem>
-            <ListGroupItem>
-              <b> Comments:</b>
-              <p>{product.CVEcomments}</p>
-            </ListGroupItem>
-          </ListGroup>
-        </Col>
+              </ListGroup.Item>
+              <ListGroupItem>
+                <b> Definition:</b>
+                <p>{product.description}</p>
+              </ListGroupItem>
+            </ListGroup>
+          </Col>
+
+          <Col md={6}>
+            <ListGroup variant="flush" className="contain">
+              <ListGroup.Item>
+                <Helmet>
+                  <title>{product.CVEname}</title>
+                </Helmet>
+
+                <h1 className="welcome">CVE LIST</h1>
+                <b>
+                  <div>
+                    <button
+                      className="button2"
+                      onMouseOver={handleMouseIn}
+                      onMouseOut={handleMouseOut}
+                    >
+                      {hover
+                        ? 'The Common Vulnerabilities and Exposures is a list of publicly disclosed cybersecurity vulnerabilities that is free to search, use, and incorporate into products and services, per the terms of use...'
+                        : 'what is CVE?'}
+                    </button>
+                  </div>
+                  <i className="subtitle"></i>
+                </b>
+              </ListGroup.Item>
+              <ListGroupItem>
+                <b>Name:</b>
+                <p>{product.CVEname}</p>
+              </ListGroupItem>
+              <ListGroupItem>
+                <b>Description:</b>
+                <p>{product.CVEdescription}</p>
+              </ListGroupItem>
+              <ListGroupItem>
+                <b> Status:</b>
+                <p>{product.CVEstatus}</p>
+              </ListGroupItem>
+              <ListGroupItem>
+                <b> References:</b>
+                <p>{product.CVEreferences}</p>
+              </ListGroupItem>
+              <ListGroupItem>
+                <b> Phase:</b>
+                <p>{product.CVEphase}</p>
+              </ListGroupItem>
+              <ListGroupItem>
+                <b> Votes:</b>
+                <p>{product.CVEvotes}</p>
+              </ListGroupItem>
+              <ListGroupItem>
+                <b> Comments:</b>
+                <p>{product.CVEcomments}</p>
+              </ListGroupItem>
+            </ListGroup>
+          </Col>
+        </Row>
+      </div>
+      <Row>
+        <div className="my-3 ">
+          <h1 className="welcome">Solutions</h1>
+
+          <table>
+            <tr>
+              <th>Available Software</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td>{product.solSoft}</td>
+              <td>{product.solDesc}</td>
+            </tr>
+          </table>
+        </div>
       </Row>
 
       <div className="my-3 ">
