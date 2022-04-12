@@ -10,7 +10,6 @@ const reviewSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
-
 const productSchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true },
@@ -21,6 +20,15 @@ const productSchema = new mongoose.Schema(
     rating: { type: Number, required: true },
     numReviews: { type: Number, required: true },
     reviews: [reviewSchema],
+    CVEcomments: { type: String },
+    CVEdescription: { type: String },
+    CVEname: { type: String },
+    CVEphase: { type: String },
+    CVEreference: { type: String },
+    CVEstatus: { type: String },
+    CVEvotes: { type: String },
+    solDesc: { type: String },
+    solSoft: { type: String },
   },
   {
     timestamps: true,

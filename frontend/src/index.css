@@ -166,6 +166,16 @@ main {
   border: none;
   color: #ececeb;
 }
+.button3 {
+  border: none;
+  color: #000000;
+  padding: 1%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  float: right;
+  width: 30px;
+  font-weight: bolder;
+}
 .dropdown {
   position: relative;
   display: inline-block;

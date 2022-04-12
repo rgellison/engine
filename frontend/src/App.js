@@ -98,15 +98,15 @@ function App() {
                         to="#signout"
                         onClick={signoutHandler}
                       >
-                        Sign Out
+                        Sign out
                       </Link>
                     </NavDropdown>
                   ) : (
                     <Link className="nav-link" to="/signin">
-                      sign in
+                      Sign in
                     </Link>
                   )}
-                  {userInfo && userInfo.isAdmin && (
+                  {/* {userInfo && userInfo.isAdmin && (
                     <NavDropdown title="Admin" id="admin-nav-dropdown">
                       <LinkContainer to="/admin/dashboard">
                         <NavDropdown.Item>Dashboard</NavDropdown.Item>
@@ -121,7 +121,7 @@ function App() {
                         <NavDropdown.Item>Users</NavDropdown.Item>
                       </LinkContainer>
                     </NavDropdown>
-                  )}
+                  )} */}
                 </Nav>
               </Navbar.Collapse>
             </Container>

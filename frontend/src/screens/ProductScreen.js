@@ -38,6 +38,8 @@ const reducer = (state, action) => {
 
 function ProductScreen() {
   let reviewsRef = useRef();
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
   const [hover, setHover] = useState();
 
   const handleMouseIn = () => {
@@ -48,8 +50,6 @@ function ProductScreen() {
     setHover(false);
   };
 
-  const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
   const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
@@ -174,6 +174,15 @@ function ProductScreen() {
                 </Helmet>
 
                 <h1 className="welcome">CVE LIST</h1>
+                <div>
+                  <button
+                    className="button3"
+                    onMouseOver={handleMouseIn}
+                    onMouseOut={handleMouseOut}
+                  >
+                    {hover ? '?' : '?'}
+                  </button>
+                </div>
                 <b>
                   <div>
                     <button
@@ -192,30 +201,107 @@ function ProductScreen() {
               <ListGroupItem>
                 <b>Name:</b>
                 <p>{product.CVEname}</p>
+                <div>
+                  <button
+                    className="button2"
+                    onMouseOver={handleMouseIn}
+                    onMouseOut={handleMouseOut}
+                  >
+                    {hover
+                      ? 'this name refers to an ID created to make an entry on the CVE list'
+                      : 'what is this?'}
+                  </button>
+                </div>
               </ListGroupItem>
               <ListGroupItem>
                 <b>Description:</b>
                 <p>{product.CVEdescription}</p>
+                <div>
+                  <button
+                    className="button2"
+                    onMouseOver={handleMouseIn}
+                    onMouseOut={handleMouseOut}
+                  >
+                    {hover
+                      ? 'this is a brief description of the security vulnerability or exposure'
+                      : 'what is this?'}
+                  </button>
+                </div>
               </ListGroupItem>
               <ListGroupItem>
                 <b> Status:</b>
                 <p>{product.CVEstatus}</p>
+                <div>
+                  <button
+                    className="button2"
+                    onMouseOver={handleMouseIn}
+                    onMouseOut={handleMouseOut}
+                  >
+                    {hover
+                      ? 'Since approximately 2005, there has been no functional difference between CVE "candidates" and "entries," since individual CVEs are no longer reviewed and approved by the CVE Board. This distinction was only useful for historical purposes.'
+                      : 'what is this?'}
+                  </button>
+                </div>
               </ListGroupItem>
               <ListGroupItem>
                 <b> References:</b>
-                <p>{product.CVEreferences}</p>
+                <p>{product.CVEreference}</p>
+                <div>
+                  <button
+                    className="button2"
+                    onMouseOver={handleMouseIn}
+                    onMouseOut={handleMouseOut}
+                  >
+                    {hover
+                      ? 'the references include links to vulnerability reports and advisories'
+                      : 'what is this?'}
+                  </button>
+                </div>
               </ListGroupItem>
               <ListGroupItem>
                 <b> Phase:</b>
                 <p>{product.CVEphase}</p>
+                <div>
+                  <button
+                    className="button2"
+                    onMouseOver={handleMouseIn}
+                    onMouseOut={handleMouseOut}
+                  >
+                    {hover
+                      ? 'For recent CVE IDs, the Phase is always "Assigned" with an associated date, but when candidates were actively distinguished from entries in earlier years, this Phase would change more often. Some sources appear to rely on the "Assigned" date, but its usage is almost always incorrect (see What does "Date Entry Created" signify in a CVE Entry? for additional information about assigned dates). This date only reflects when the number was first allocated by MITRE and rarely has any close relationship with when the issue was discovered or first made public, or when the ID was privately linked with an issue before publication. Due to extensive misunderstanding and misuse of this field, it is intentionally being omitted. However, the "Published" and "Modified" Note elements should provide the desired data.'
+                      : 'what is this?'}
+                  </button>
+                </div>
               </ListGroupItem>
               <ListGroupItem>
                 <b> Votes:</b>
                 <p>{product.CVEvotes}</p>
+                <div>
+                  <button
+                    className="button2"
+                    onMouseOver={handleMouseIn}
+                    onMouseOut={handleMouseOut}
+                  >
+                    {hover
+                      ? 'This field was only populated in 2005 and earlier, and only for candidates that had not been promoted to official entries or otherwise rejected. Since individual CVE Entries are no longer reviewed and approved by the CVE Board, this data is at best historical.'
+                      : 'what is this?'}
+                  </button>
+                </div>
               </ListGroupItem>
               <ListGroupItem>
                 <b> Comments:</b>
                 <p>{product.CVEcomments}</p>
+                <div>
+                  <button
+                    className="button2"
+                    onMouseOver={handleMouseIn}
+                    onMouseOut={handleMouseOut}
+                  >
+                    {hover
+                      ? 'This field was only populated in 2005 and earlier, and only for candidates that had not been promoted to official entries or otherwise rejected. Since individual CVE Entries are no longer reviewed and approved by the CVE Board, this data is at best historical.'
+                      : 'what is this?'}
+                  </button>
+                </div>
               </ListGroupItem>
             </ListGroup>
           </Col>
@@ -237,82 +323,72 @@ function ProductScreen() {
           </table>
         </div>
       </Row>
+      <div className="my-3">
+        <h2 ref={reviewsRef}>Reviews</h2>
+      </div>
+      <div className="mb-3">
+        {product.reviews.length === 0 && (
+          <MessageBox>There is no review</MessageBox>
+        )}
+      </div>
+      <ListGroup>
+        {product.reviews.map((review) => (
+          <ListGroup.Item key={review._id}>
+            <strong>{review.name}</strong>
+            <Rating rating={review.rating} caption=" "></Rating>
+            <p>{review.createdAt.substring(0, 10)}</p>
+            <p>{review.comment}</p>
+          </ListGroup.Item>
+        ))}
+      </ListGroup>
+      <div className="my-3">
+        {userInfo ? (
+          <form onSubmit={submitHandler}>
+            <h2>Write a customer review</h2>
+            <Form.Group className="mb-3" controlId="rating">
+              <Form.Label>Rating</Form.Label>
+              <Form.Select
+                aria-label="Rating"
+                value={rating}
+                onChange={(e) => setRating(e.target.value)}
+              >
+                <option value="">Select...</option>
+                <option value="1">1- Poor</option>
+                <option value="2">2- Fair</option>
+                <option value="3">3- Good</option>
+                <option value="4">4- Very good</option>
+                <option value="5">5- Excellent</option>
+              </Form.Select>
+            </Form.Group>
+            <FloatingLabel
+              controlId="floatingTextarea"
+              label="Comments"
+              className="mb-3"
+            >
+              <Form.Control
+                as="textarea"
+                placeholder="Leave a comment here"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+              />
+            </FloatingLabel>
 
-      <div className="my-3 ">
-        <h2 className="welcome" ref={reviewsRef}>
-          Reviews
-        </h2>
-        <div className="mb-3">
-          {product.reviews.length === 0 && (
-            <MessageBox>There is no review</MessageBox>
-          )}
-        </div>
-        <Row>
-          <Col>
-            {' '}
-            <ListGroup>
-              {product.reviews.map((review) => (
-                <ListGroup.Item key={review._id}>
-                  <strong>{review.name}</strong>
-                  <Rating rating={review.rating} caption=" "></Rating>
-                  <p>{review.createdAt.substring(0, 10)}</p>
-                  <p>{review.comment}</p>
-                </ListGroup.Item>
-              ))}
-            </ListGroup>
-          </Col>
-          <Col>
-            <div className="my-3">
-              {userInfo ? (
-                <form onSubmit={submitHandler}>
-                  <h2>Tell us what you think?</h2>
-                  <Form.Group className="mb-3" controlId="rating">
-                    <Form.Label></Form.Label>
-                    <Form.Select
-                      aria-label="Rating"
-                      value={rating}
-                      onChange={(e) => setRating(e.target.value)}
-                    >
-                      <option value="">Select rating...</option>
-                      <option value="1">1- Poor</option>
-                      <option value="2">2- Fair</option>
-                      <option value="3">3- Good</option>
-                      <option value="4">4- Very good</option>
-                      <option value="5">5- Excelent</option>
-                    </Form.Select>
-                  </Form.Group>
-                  <FloatingLabel
-                    controlId="floatingTextarea"
-                    label="Comments"
-                    className="mb-3"
-                  >
-                    <Form.Control
-                      as="textarea"
-                      placeholder="Leave a comment here"
-                      value={comment}
-                      onChange={(e) => setComment(e.target.value)}
-                    />
-                  </FloatingLabel>
-
-                  <div className="mb-3">
-                    <Button disabled={loadingCreateReview} type="submit">
-                      Submit
-                    </Button>
-                    {loadingCreateReview && <LoadingBox></LoadingBox>}
-                  </div>
-                </form>
-              ) : (
-                <MessageBox>
-                  Please{' '}
-                  <Link to={`/signin?redirect=/product/${product.slug}`}>
-                    Sign In
-                  </Link>{' '}
-                  to write a review
-                </MessageBox>
-              )}
+            <div className="mb-3">
+              <Button disabled={loadingCreateReview} type="submit">
+                Submit
+              </Button>
+              {loadingCreateReview && <LoadingBox></LoadingBox>}
             </div>
-          </Col>
-        </Row>
+          </form>
+        ) : (
+          <MessageBox>
+            Please{' '}
+            <Link to={`/signin?redirect=/product/${product.slug}`}>
+              Sign In
+            </Link>{' '}
+            to write a review
+          </MessageBox>
+        )}
       </div>
     </div>
   );
