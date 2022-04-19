@@ -2,6 +2,33 @@
 
 1. Before running the application ensure you have node.js installed on your device
    (you may need to reboot after this step)
+2. We also need to check your host file can accpet the host connection
+   a. Open the start menu
+   b. Type Notepad.exe and press enter
+   c. In notepad find file and open
+   d. Navigate to C:\Windows\System32\drivers\etc.
+   e. Change the file type to open from Text Documents (_.txt) to All Files (_.\*).
+   f. Open the hosts file.
+   g. Enter the following details at the bottom of the file:
+
+##
+
+# Host Database
+
+#
+
+# localhost is used to configure the loopback interface
+
+# when the system is booting. Do not change this entry.
+
+##
+
+127.0.0.1 localhost1
+255.255.255.255 broadcasthost
+::1 localhost
+fe80::1%lo0 localhost
+h. Press save and follow the next instructions
+
 2. Clone the git at repository https://github.com/rgellison/engine.git
 3. Locate the backend folder in the file explorer and create a new file called .env
    this file is the environment for the database
