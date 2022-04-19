@@ -1,6 +1,33 @@
 # engine
 
+1. Before running the application ensure you have node.js installed on your device
+   (you may need to reboot after this step)
+2. Clone the git at repository https://github.com/rgellison/engine.git
+3. Locate the backend folder in the file explorer and create a new file called .env
+   this file is the environment for the database
+4. In this .env file copy the following details:
+   JWT_SECRET=somethingsecret
+   MONGODB_URI=mongodb://localhost1/engine
+5. Save this file and open a new terminal
+6. Type the following command: cd backend
+7. Type the following command: npm install
+8. Type the following command: npm install react
+9. Type the following command: node server.js - you should see the database is connected
+10. Keep this terminal open and open a new terminal
+11. Type the following command: cd frontend
+12. Type the following command: npm install react-scripts
+13. Type the following command: npm start
+
+You should now be able to access the site
+Please create an account or use the following details to log in:
+email: guest@guest.com
+password: guest
+
+Enjoy :)
+
 # Work
+
+Below are all the components created thorughout the duration of my project:
 
 1. Install Tools
 2. Create React App
