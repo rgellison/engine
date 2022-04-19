@@ -1,7 +1,7 @@
 # engine
 
-1. Before running the application ensure you have node.js installed on your device
-   (you may need to reboot after this step)
+1. Before running the application ensure you have node.js and MongoDB installed on your device
+   Please use the following links to complete this www.mongodb/try/download/community www.nodejs.org/es/
 2. We also need to check your host file can accpet the host connection
    a. Open the start menu
    b. Type Notepad.exe and press enter
@@ -44,6 +44,8 @@ h. Press save and follow the next instructions
 11. Type the following command: cd frontend
 12. Type the following command: npm install react-scripts
 13. Type the following command: npm start
+
+If you do not see any data on the screen - please revert to the zipped file where I have provided JSON files which you can import into your database connection.
 
 You should now be able to access the site
 Please create an account or use the following details to log in:
