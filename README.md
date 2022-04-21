@@ -2,7 +2,7 @@
 
 1. Before running the application ensure you have node.js and MongoDB installed on your device
    Please use the following links to complete this www.mongodb/try/download/community www.nodejs.org/es/
-2. We also need to check your host file can accpet the host connection
+2. We also need to check your host file can accept the host connection
    a. Open the start menu
    b. Type Notepad.exe and press enter
    c. In notepad find file and open
